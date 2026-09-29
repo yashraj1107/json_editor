@@ -1,0 +1,184 @@
+/* ================================================================
+   EDITOR PANEL LAYOUT
+   ================================================================ */
+
+.editor-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.editor-panel--active {
+  border-color: var(--brand);
+}
+
+/* ── Panel Header ────────────────────────────────────────────── */
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 38px;
+  padding: 0 8px;
+  gap: 6px;
+  background: var(--bg-panel-header);
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-docname {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.panel-name-text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2px 4px;
+  border-radius: var(--radius);
+  transition: background 0.15s;
+}
+.panel-name-text:hover { background: var(--bg-hover); color: var(--text-bright); }
+
+.panel-name-edit-icon {
+  opacity: 0;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  transition: opacity 0.15s;
+}
+.panel-name-text:hover .panel-name-edit-icon { opacity: 1; }
+
+.panel-name-input {
+  font-size: 12.5px;
+  font-family: inherit;
+  background: var(--bg-input);
+  border: 1px solid var(--brand);
+  border-radius: var(--radius);
+  color: var(--text-bright);
+  padding: 2px 6px;
+  min-width: 80px;
+  max-width: 180px;
+  outline: none;
+}
+
+.panel-header-spacer { flex: 1; }
+
+/* ── Mode Select ─────────────────────────────────────────────── */
+
+.mode-select {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 12px;
+  font-family: inherit;
+  padding: 3px 6px;
+  cursor: pointer;
+  outline: none;
+  height: 26px;
+}
+.mode-select:hover { border-color: var(--brand); }
+.mode-select:focus { border-color: var(--brand); }
+
+/* ── Panel Toolbar ───────────────────────────────────────────── */
+
+.panel-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.ph-btn {
+  color: var(--text-dim);
+  padding: 4px 5px;
+  font-size: 12px;
+}
+.ph-btn:hover { color: var(--text); background: var(--bg-hover); }
+.ph-btn:active { background: var(--bg-active); }
+
+.ph-separator {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  margin: 0 2px;
+}
+
+/* ── Validity Badge ──────────────────────────────────────────── */
+
+.validity-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.validity-ok { background: rgba(61,139,55,0.2); color: var(--text-brand); }
+.validity-err { background: rgba(220,50,50,0.2); color: #f47979; }
+
+/* ================================================================
+   EDITOR MOUNT – CRITICAL RESPONSIVE FIX
+   ================================================================ */
+
+.editor-mount {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Force svelte-jsoneditor root to fill the mount completely */
+.editor-mount > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* jse-main must also fill 100% */
+.editor-mount .jse-main {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+/* Ensure all mode containers fill their space */
+.editor-mount .jse-contents,
+.editor-mount .jse-text-mode,
+.editor-mount .jse-tree-mode,
+.editor-mount .jse-table-mode {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+/* CodeMirror fill fix */
+.editor-mount .cm-editor,
+.editor-mount .cm-scroller {
+  height: 100% !important;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 768px) {
+  .panel-toolbar { display: none; }
+  .panel-docname { max-width: 120px; }
+}

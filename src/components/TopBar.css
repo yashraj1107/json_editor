@@ -1,0 +1,80 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 10px;
+  background: var(--bg-topbar);
+  color: var(--text-bright);
+  flex-shrink: 0;
+  gap: 2px;
+  user-select: none;
+  position: relative;
+  z-index: 100;
+}
+
+/* Dark: text is light, green bg */
+.app.dark .topbar { color: rgba(255,255,255,0.9); }
+.app.light .topbar { color: rgba(255,255,255,0.95); }
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 8px;
+}
+
+.topbar-logo { display: flex; align-items: center; }
+
+.topbar-title {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.topbar-sep { flex: 1; }
+
+.topbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.topbar-right {
+  margin-left: auto;
+}
+
+.topbar-btn {
+  color: rgba(255,255,255,0.88);
+  font-size: 12.5px;
+  padding: 5px 8px;
+  border-radius: var(--radius);
+  gap: 5px;
+}
+
+.topbar-btn:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.topbar-btn:active {
+  background: rgba(255,255,255,0.22);
+}
+
+.topbar .separator {
+  background: rgba(255,255,255,0.25);
+}
+
+.btn-label {
+  font-weight: 500;
+}
+
+/* Hide labels on narrow viewports */
+@media (max-width: 900px) {
+  .btn-label { display: none; }
+  .topbar-btn { padding: 5px 7px; }
+}
+
+@media (max-width: 600px) {
+  .topbar-title { display: none; }
+}
